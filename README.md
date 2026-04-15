@@ -19,5 +19,6 @@ Dieses Projekt automatisiert die Erstellung und Konfiguration von virtuellen Mas
 ## 🚀 Nutzung
 
 ```bash
+cd proxmox-ansible
 ./auto-deploy.sh
  
