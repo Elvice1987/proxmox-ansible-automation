@@ -1,0 +1,10 @@
+---
+- name: xrdp neu starten
+  ansible.builtin.service:
+    name: xrdp
+    state: restarted
+
+- name: xrdp-sesman neu starten
+  ansible.builtin.service:
+    name: xrdp-sesman
+    state: restarted

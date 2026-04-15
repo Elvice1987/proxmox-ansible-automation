@@ -1,0 +1,14 @@
+---
+- name: Desktop-VM konfigurieren
+  hosts: desktop_vms
+  become: true
+  serial: 1
+
+  pre_tasks:
+    - name: Warten auf SSH
+      ansible.builtin.wait_for_connection:
+        timeout: 300
+        sleep: 5
+
+  roles:
+    - xfce_xrdp

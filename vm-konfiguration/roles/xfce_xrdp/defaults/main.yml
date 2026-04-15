@@ -1,0 +1,71 @@
+---
+# 🌍 Systemeinstellungen
+timezone: "Europe/Berlin"
+locale: "de_DE.UTF-8"
+
+# 🖥️ XRDP-Einstellungen
+xrdp_port: 3389
+xrdp_allowed_group: "xrdpusers"
+
+# 👥 Benutzer
+desktop_users:
+  - name: "elvice"
+    comment: "Hauptbenutzer"
+    groups:
+      - sudo
+      - audio
+      - video
+      - plugdev
+      - "{{ xrdp_allowed_group }}"
+    shell: "/bin/bash"
+    password: "$6$ciySGAovnpGWQEBR$GFRDjHvqRGYl0o.xTKGJcTLW76z.jbHZEaRHCjCy7Bp1pawEY54VLcBauo5RpEaWzmTPUuHgt0vLDoyRp9D1E0"
+
+  - name: "user1"
+    comment: "Benutzer Eins"
+    groups:
+      - audio
+      - video
+      - plugdev
+      - "{{ xrdp_allowed_group }}"
+    shell: "/bin/bash"
+    password: "$6$ciySGAovnpGWQEBR$GFRDjHvqRGYl0o.xTKGJcTLW76z.jbHZEaRHCjCy7Bp1pawEY54VLcBauo5RpEaWzmTPUuHgt0vLDoyRp9D1E0"
+
+# 📦 Basis-Pakete
+base_packages:
+  - sudo
+  - curl
+  - wget
+  - vim
+  - ca-certificates
+  - gnupg
+  - dbus-x11
+  - xorg
+  - xorgxrdp
+  - xrdp
+  - xfce4
+  - xfce4-goodies
+
+extra_packages: []
+
+# 🧹 Unerwünschte Pakete
+remove_packages:
+  - libreoffice*
+  - atril*
+  - exfalso*
+  - parole
+  - quodlibet
+  - xfburn
+  - firefox-esr*
+  - xsane
+  - kdeconnect
+  - hv3
+
+# 🧩 Gewünschte Anwendungen
+app_packages:
+  - net-tools
+  - htop
+  - xrdp
+  - xorgxrdp
+
+install_google_chrome: true
+install_onlyoffice: true

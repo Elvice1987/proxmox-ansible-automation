@@ -1,0 +1,63 @@
+---
+- name: Neue VM aus Template erstellen
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    ansible_python_interpreter: "/root/ansible-venv/bin/python"
+    proxmox_host: "192.168.30.99"
+    proxmox_user: "root@pam"
+    proxmox_password: "12345678"
+    node: "testpve"
+    template_name: "debian13-auto-11"
+
+    vmid: "{{ vmid }}"
+    vm_name: "{{ vm_name }}"
+    vm_ip: "{{ vm_ip }}"
+
+  tasks:
+
+    - name: VM klonen
+      community.proxmox.proxmox_kvm:
+        api_host: "{{ proxmox_host }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
+        api_timeout: 60
+        validate_certs: false
+        node: "{{ node }}"
+        clone: "{{ template_name }}"
+        name: "{{ vm_name }}"
+        newid: "{{ vmid }}"
+        full: true
+        timeout: 1200
+        state: present
+
+    - name: Cloud-Init konfigurieren
+      community.proxmox.proxmox_kvm:
+        api_host: "{{ proxmox_host }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
+        api_timeout: 60
+        validate_certs: false
+        node: "{{ node }}"
+        vmid: "{{ vmid }}"
+        ipconfig:
+          ipconfig0: "ip={{ vm_ip }}/24,gw=192.168.30.250"
+        ciuser: "admin"
+        cipassword: "Admin123!"
+        sshkeys: "{{ lookup('file', '/root/.ssh/id_ed25519.pub') }}"
+        update: true
+        timeout: 1200
+        state: present
+
+    - name: VM starten
+      community.proxmox.proxmox_kvm:
+        api_host: "{{ proxmox_host }}"
+        api_user: "{{ proxmox_user }}"
+        api_password: "{{ proxmox_password }}"
+        api_timeout: 60
+        validate_certs: false
+        node: "{{ node }}"
+        vmid: "{{ vmid }}"
+        state: started
