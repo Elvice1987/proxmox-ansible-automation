@@ -122,3 +122,25 @@ cd ~/proxmox-ansible
 -   Konsistente und saubere Infrastruktur
 -   Reduzierung manueller Fehler
 
+---
+
+## Screenshots – Projektübersicht
+
+### SSH Verbindung
+![SSH](images/ssh-connection.png)
+
+---
+
+### Ansible Deployment
+![Ansible](images/ansible-deploy.png)
+
+---
+
+### XRDP Login
+![XRDP](images/xrdp-login.png)
+
+---
+
+### XFCE Desktop
+![XFCE](images/xfce-desktop.png)
+
