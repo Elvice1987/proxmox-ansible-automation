@@ -2,24 +2,78 @@
 set -e
 
 FULL_DEPLOY="/root/proxmox-ansible/full-deploy.sh"
-LAST_FILE="/root/proxmox-ansible/.last_vm_number"
 
-if [ ! -f "$LAST_FILE" ]; then
-  echo 8 > "$LAST_FILE"
-fi
+# ----- Proxmox API -----
+PROXMOX_HOST="192.168.30.99"
+PROXMOX_USER="root@pam"
+PROXMOX_PASSWORD="********"
 
-LAST_NUM=$(cat "$LAST_FILE")
-NEXT_NUM=$((LAST_NUM + 1))
+# ----- IP Bereich -----
+START_IP=168
+END_IP=199
 
-VM_NAME="debian13-auto-${NEXT_NUM}"
-VMID=$((200 + NEXT_NUM))
-VM_IP="192.168.30.$((160 + NEXT_NUM))"
+# ----- VMID automatisch bestimmen -----
+VMID=$(python3 - << 'PY'
+import json, ssl, urllib.parse, urllib.request
 
-echo "$NEXT_NUM" > "$LAST_FILE"
+host = "192.168.30.99"
+user = "root@pam"
+password = "********"
+
+ctx = ssl._create_unverified_context()
+base = f"https://{host}:8006/api2/json"
+
+data = urllib.parse.urlencode({
+    "username": user,
+    "password": password
+}).encode()
+
+req = urllib.request.Request(f"{base}/access/ticket", data=data, method="POST")
+with urllib.request.urlopen(req, context=ctx) as r:
+    ticket_data = json.load(r)["data"]
+
+ticket = ticket_data["ticket"]
+
+req = urllib.request.Request(
+    f"{base}/cluster/resources?type=vm",
+    headers={"Cookie": f"PVEAuthCookie={ticket}"}
+)
+
+with urllib.request.urlopen(req, context=ctx) as r:
+    items = json.load(r)["data"]
+
+used_vmids = sorted(int(item["vmid"]) for item in items if "vmid" in item)
+
+expected = 100
+for vmid in used_vmids:
+    if vmid != expected:
+        print(expected)
+        break
+    expected += 1
+else:
+    print(expected)
+PY
+)
+
+# ----- VM Name -----
+VM_NAME=$(printf "vm-%02d" $((VMID % 100)))
+
+# ----- IP automatisch bestimmen -----
+VM_IP=""
+for i in $(seq "$START_IP" "$END_IP"); do
+  IP="192.168.30.$i"
+  if ! ping -c 1 -W 1 "$IP" >/dev/null 2>&1; then
+    VM_IP="$IP"
+    break
+  fi
+done
 
 echo "Neue VM wird erstellt:"
 echo "Name: $VM_NAME"
 echo "VMID: $VMID"
 echo "IP:   $VM_IP"
+
+# Alte SSH Keys entfernen
+ssh-keygen -f '/root/.ssh/known_hosts' -R "$VM_IP" >/dev/null 2>&1 || true
 
 "$FULL_DEPLOY" "$VMID" "$VM_NAME" "$VM_IP"
