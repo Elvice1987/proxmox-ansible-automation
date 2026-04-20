@@ -99,121 +99,56 @@ flowchart TD
 
 ----------
 
-## **6.1 Skript `auto-deploy.sh`**
+6.1 Skript auto-deploy.sh
 
-#!/usr/bin/env bash  
-set  -e  
-  
-START_IP=168  
-END_IP=199  
-  
-VMID=$(python3 ...)  
-VM_NAME=$(printf "vm-%02d" $((VMID % 100)))  
-  
-for i in $(seq "$START_IP"  "$END_IP"); do  
-  IP="192.168.30.$i"  
-  if ! ping  -c  1  -W  1  "$IP"; then  
-  VM_IP="$IP"  
- break  
-  fi  
-done  
-  
-./full-deploy.sh "$VMID"  "$VM_NAME"  "$VM_IP"
+Dieses Skript übernimmt die zentrale Steuerung des Deployments. Es ermittelt automatisch eine freie VMID sowie eine verfügbare IP-Adresse und startet anschließend das Hauptskript.
 
-Dieses Skript berechnet automatisch VMID und IP und startet das Deployment.
+6.2 Skript full-deploy.sh
 
-----------
+Dieses Skript führt die vollständige Erstellung und Konfiguration der virtuellen Maschine aus. Es ruft sowohl das Playbook zur VM-Erstellung als auch das Konfigurations-Playbook auf.
 
-## **6.2 Skript `full-deploy.sh`**
+6.3 Playbook create-vm.yml
 
-VMID="$1"  
-VM_NAME="$2"  
-VM_IP="$3"  
-  
-ansible-playbook create-vm.yml \  
-  -e  "vmid=$VMID vm_name=$VM_NAME vm_ip=$VM_IP"  
-  
-ansible -m  ping  
-  
-ansible-playbook site.yml
+Dieses Playbook erstellt eine neue virtuelle Maschine aus einem vorhandenen Template und konfiguriert Cloud-Init.
 
- Führt die komplette Erstellung und Konfiguration aus.
+Funktionen:
 
-----------
+Klonen der VM aus einem Template
+Konfiguration von Netzwerk und Benutzer
+Starten der VM
+6.4 Inventory inventory.ini
 
-## **6.3 Playbook `create-vm.yml`**
+Das Inventory definiert die Zielsysteme für Ansible und enthält die notwendigen Verbindungsparameter.
 
-- name: Neue VM aus Template erstellen  
- hosts: localhost  
-  
- tasks:  
- - name: VM klonen  
- community.proxmox.proxmox_kvm:  
- clone: "{{ template_name }}"  
- name: "{{ vm_name }}"  
- newid: "{{ vmid }}"  
-  
- - name: Cloud-Init konfigurieren  
- community.proxmox.proxmox_kvm:  
- vmid: "{{ vmid }}"  
- ipconfig:  
- ipconfig0: "ip={{ vm_ip }}/24"  
-  
- - name: VM starten  
- community.proxmox.proxmox_kvm:  
- vmid: "{{ vmid }}"  
- state: started
+6.5 Playbook site.yml
 
- Erstellt und startet die VM.
+Dieses Playbook übernimmt die vollständige Konfiguration der virtuellen Maschine nach der Erstellung.
 
-----------
+6.6 Rolle xfce_xrdp
 
-## **6.4 Inventory `inventory.ini`**
+Diese Rolle installiert und konfiguriert die Desktop-Umgebung sowie den Remote-Zugriff.
 
-[desktop_vms:vars]  
-ansible_user=admin  
-ansible_ssh_private_key_file=/root/.ssh/id_ed25519  
-  
-[desktop_vms]  
-vm-06 ansible_host=192.168.30.172
+Funktionen:
 
-Definiert die Zielsysteme.
+Installation von Paketen
+Erstellung von Benutzern
+Einrichtung von XFCE
+Konfiguration von XRDP
+7. Erweiterte Systemkonfiguration
 
-----------
+Im Rahmen der Konfiguration wurden zusätzliche Anpassungen vorgenommen:
 
-## **6.5 Playbook `site.yml`**
+7.1 Entfernung unnötiger Pakete
 
-- name: Desktop-VM konfigurieren  
- hosts: desktop_vms  
- become: true  
-  
- pre_tasks:  
- - wait_for_connection:  
-  
- roles:  
- - xfce_xrdp
+Zur Optimierung des Systems wurden nicht benötigte Anwendungen entfernt.
 
-Startet die Konfiguration.
+7.2 Installation zusätzlicher Software
 
-----------
+Wichtige Tools wie htop, net-tools und xrdp wurden installiert.
 
-## **6.6 Rolle `xfce_xrdp`**
+7.3 Benutzerverwaltung
 
-- name: Pakete installieren  
- apt:  
- name: "{{ base_packages }}"  
-  
-- name: Benutzer erstellen  
- user:  
- name: "{{ item.name }}"  
-  
-- name: XRDP starten  
- service:  
- name: xrdp
-
-Richtet Desktop und Remote-Zugriff ein.
-
-----------
+Benutzer werden automatisiert erstellt und konfiguriert.
 
 # **6.7 Erweiterte Systemkonfiguration**
 
@@ -338,186 +273,3 @@ Der Zugriff funktioniert über XRDP.
 
 **Abbildung 10: Mehrere VMs**
 
-(ansible-venv) root@ansible-control:~/proxmox-ansible# cat ~/proxmox-ansible/auto-deploy.sh
-
-#!/usr/bin/env bash
-
-set -e
-
-  
-
-FULL_DEPLOY="/root/proxmox-ansible/full-deploy.sh"
-
-  
-
-# ----- Proxmox API -----
-
-PROXMOX_HOST="192.168.30.99"
-
-PROXMOX_USER="root@pam"
-
-PROXMOX_PASSWORD="12345678"
-
-  
-
-# ----- IP-Bereich -----
-
-START_IP=168
-
-END_IP=199
-
-  
-
-# Trouver le plus petit VMID libre à partir des vrais VMIDs Proxmox
-
-VMID=$(python3 - << 'PY'
-
-import json
-
-import ssl
-
-import urllib.parse
-
-import urllib.request
-
-  
-
-host = "192.168.30.99"
-
-user = "root@pam"
-
-password = "12345678"
-
-  
-
-ctx = ssl._create_unverified_context()
-
-base = f"https://{host}:8006/api2/json"
-
-  
-
-data = urllib.parse.urlencode({
-
-"username": user,
-
-"password": password
-
-}).encode()
-
-  
-
-req = urllib.request.Request(f"{base}/access/ticket", data=data, method="POST")
-
-with urllib.request.urlopen(req, context=ctx, timeout=30) as r:
-
-ticket_data = json.load(r)["data"]
-
-  
-
-ticket = ticket_data["ticket"]
-
-  
-
-req = urllib.request.Request(
-
-f"{base}/cluster/resources?type=vm",
-
-headers={"Cookie": f"PVEAuthCookie={ticket}"}
-
-)
-
-with urllib.request.urlopen(req, context=ctx, timeout=30) as r:
-
-items = json.load(r)["data"]
-
-  
-
-used_vmids = sorted(int(item["vmid"]) for item in items if "vmid" in item)
-
-  
-
-expected = 100
-
-for vmid in used_vmids:
-
-if vmid != expected:
-
-print(expected)
-
-break
-
-expected += 1
-
-else:
-
-print(expected)
-
-PY
-
-)
-
-  
-
-if [ -z "$VMID" ]; then
-
-echo "FEHLER: Kein freier VMID gefunden."
-
-exit 1
-
-fi
-
-  
-
-# Nom cohérent avec le VMID
-
-VM_NAME=$(printf "vm-%02d" $((VMID % 100)))
-
-  
-
-# Trouver la plus petite IP libre
-
-VM_IP=""
-
-for i in $(seq "$START_IP" "$END_IP"); do
-
-IP="192.168.30.$i"
-
-if ! ping -c 1 -W 1 "$IP" >/dev/null 2>&1; then
-
-VM_IP="$IP"
-
-break
-
-fi
-
-done
-
-  
-
-if [ -z "$VM_IP" ]; then
-
-echo "FEHLER: Keine freie IP gefunden."
-
-exit 1
-
-fi
-
-  
-
-echo "Neue VM wird erstellt:"
-
-echo "Name: $VM_NAME"
-
-echo "VMID: $VMID"
-
-echo "IP: $VM_IP"
-
-  
-
-# ancienne host key éventuelle
-
-ssh-keygen -f '/root/.ssh/known_hosts' -R "$VM_IP" >/dev/null 2>&1 || true
-
-  
-
-"$FULL_DEPLOY" "$VMID" "$VM_NAME" "$VM_IP"
