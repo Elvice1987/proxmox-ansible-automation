@@ -99,15 +99,15 @@ flowchart TD
 
 ----------
 
-6.1 Skript auto-deploy.sh
+## **6.1 Skript auto-deploy.sh
 
 Dieses Skript übernimmt die zentrale Steuerung des Deployments. Es ermittelt automatisch eine freie VMID sowie eine verfügbare IP-Adresse und startet anschließend das Hauptskript.
 
-6.2 Skript full-deploy.sh
+## **6.2 Skript full-deploy.sh
 
 Dieses Skript führt die vollständige Erstellung und Konfiguration der virtuellen Maschine aus. Es ruft sowohl das Playbook zur VM-Erstellung als auch das Konfigurations-Playbook auf.
 
-6.3 Playbook create-vm.yml
+## **6.3 Playbook create-vm.yml
 
 Dieses Playbook erstellt eine neue virtuelle Maschine aus einem vorhandenen Template und konfiguriert Cloud-Init.
 
@@ -116,15 +116,15 @@ Funktionen:
 Klonen der VM aus einem Template
 Konfiguration von Netzwerk und Benutzer
 Starten der VM
-6.4 Inventory inventory.ini
+## **6.4 Inventory inventory.ini
 
 Das Inventory definiert die Zielsysteme für Ansible und enthält die notwendigen Verbindungsparameter.
 
-6.5 Playbook site.yml
+## **6.5 Playbook site.yml
 
 Dieses Playbook übernimmt die vollständige Konfiguration der virtuellen Maschine nach der Erstellung.
 
-6.6 Rolle xfce_xrdp
+## **6.6 Rolle xfce_xrdp
 
 Diese Rolle installiert und konfiguriert die Desktop-Umgebung sowie den Remote-Zugriff.
 
@@ -134,19 +134,19 @@ Installation von Paketen
 Erstellung von Benutzern
 Einrichtung von XFCE
 Konfiguration von XRDP
-7. Erweiterte Systemkonfiguration
+# **7. Erweiterte Systemkonfiguration
 
 Im Rahmen der Konfiguration wurden zusätzliche Anpassungen vorgenommen:
 
-7.1 Entfernung unnötiger Pakete
+## **7.1 Entfernung unnötiger Pakete
 
 Zur Optimierung des Systems wurden nicht benötigte Anwendungen entfernt.
 
-7.2 Installation zusätzlicher Software
+## **7.2 Installation zusätzlicher Software
 
 Wichtige Tools wie htop, net-tools und xrdp wurden installiert.
 
-7.3 Benutzerverwaltung
+## **7.3 Benutzerverwaltung
 
 Benutzer werden automatisiert erstellt und konfiguriert.
 
@@ -269,7 +269,5 @@ Die VM ist vollständig nutzbar.
 
 Der Zugriff funktioniert über XRDP.
 
-----------
 
-**Abbildung 10: Mehrere VMs**
 
