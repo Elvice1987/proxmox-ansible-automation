@@ -222,21 +222,9 @@ flowchart LR
 
 ----------
 
+# **9. Durchführung und Ergebnisse**
 
-# **9. Fazit**
-
-Das Projekt zeigt, dass durch Automatisierung eine effiziente Infrastruktur aufgebaut werden kann.
-
-Der gesamte Prozess ist:
-
--   automatisiert
--   reproduzierbar
--   skalierbar
-
-
-# **10. Durchführung und Ergebnisse**
-
-## **10.1 Start des Deployments**
+## **9.1 Start des Deployments**
 
 <img width="851" height="486" alt="image" src="https://github.com/user-attachments/assets/d704db9f-a3db-42ac-a44e-9c5b91ec0eee" />
 
@@ -246,7 +234,7 @@ Die Ausgabe zeigt, dass alle Aufgaben erfolgreich ausgeführt wurden (failed=0).
 
 ----------
 
-## **10.2 Erstellung der VM in Proxmox**
+## **9.2 Erstellung der VM in Proxmox**
 
 <img width="1467" height="805" alt="image" src="https://github.com/user-attachments/assets/5031e47f-85d1-4e64-9808-c464bfea102a" />
 
@@ -257,7 +245,7 @@ Die VM wurde erfolgreich erstellt und gestartet.
 
 ----------
 
-## **10.3 SSH-Verbindung**
+## **9.3 SSH-Verbindung**
 
 <img width="685" height="366" alt="image" src="https://github.com/user-attachments/assets/17eb7622-d7b0-422d-9a28-1012fbec6824" />
 
@@ -268,7 +256,7 @@ Die Verbindung bestätigt die korrekte Netzwerkkonfiguration.
 
 ----------
 
-## **10.4 Desktop-Umgebung**
+## **9.4 Desktop-Umgebung**
 
 <img width="980" height="636" alt="image" src="https://github.com/user-attachments/assets/138b99ae-3902-446a-abb6-a84d760d4470" />
 
@@ -279,7 +267,7 @@ Die VM ist vollständig nutzbar.
 
 ----------
 
-## **10.5 Remote Zugriff (XRDP)**
+## **9.5 Remote Zugriff (XRDP)**
 
 <img width="1153" height="713" alt="image" src="https://github.com/user-attachments/assets/e1ff0ad5-a927-4a20-b84a-466c2e9ea6e5" />
 
@@ -288,5 +276,13 @@ Die VM ist vollständig nutzbar.
 
 Der Zugriff funktioniert über XRDP.
 
+# **10. Fazit**
 
+Das Projekt zeigt, dass durch Automatisierung eine effiziente Infrastruktur aufgebaut werden kann.
+
+Der gesamte Prozess ist:
+
+-   automatisiert
+-   reproduzierbar
+-   skalierbar
 
