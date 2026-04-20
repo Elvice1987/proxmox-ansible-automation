@@ -284,13 +284,7 @@ Der gesamte Prozess ist:
 
 ## **7.1 Start des Deployments**
 
-![https://images.openai.com/static-rsc-4/jVtIn8vGQ84OCRSKkRmy5SKXHCPIlShWGMpwnTu-wF_DS_7m9xi_87aKCVHkrF8roaC3e5L7Q3wyaFsm8GCJwYLHf1BTyKybhVoVNL3NuxgfAUDqW6lSL2N6hq_KP0YdQOvNTPhIqyFkICa8ZhuTY90lf79Ga07XMdt1I_dxur6ZHd_YBXuDCwQy-5TsI14v?purpose=fullsize](https://images.openai.com/static-rsc-4/E_nSMpp4SjbnkQbkaKoZiwTFwkH-ERnYmElyOYRk5NRkiXrMT8yhMJk76zqS4SQhWuIMJfKs_CpVk1ewv1u-s7oe1zUPbzrFoBKokgOfbMLD9viQyiYXv_hHsgoVx6Jtoq1UssVrBg5heZphZVEFdDz0hz7WmIDDy0wRwgAtYiY?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/JGq1AwlBzjbnZH0ZqxCZrrp2XuaQO2Kc6uxrQMm-0GSobPoA0LeBCnwOsB03UjqjEKIwRwj49abDI-NTM1NAncaWKJ2ftJAUszz9TYgeDv0JinlCETXBtgKYpW6RXnbH-SgyIxBB2QgYpffCv8voC7fWwZE969Q38h9m3j7LK3TCQLQrRsAJJI7xSqd7n5EB?purpose=fullsize](https://images.openai.com/static-rsc-4/J0RdMFpflInw74TpPhFagcK0ol1V74iqe7dQWWUV0V3vkZGaTtUJJtvyGi5EZNe-csgrKtTvmPphP7KuJbxuSlJIhF0_te9JM7jsJoPorkisHDR_rzcKgBgxlV1Wur_LdnOzW294ocMnewHluQNgBVIkILhz8pbZt-RoyuIcuUw?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/v7ebNB4LEAdzPf757dy0nqzhCTkdsXy-jULzDyPEGn-uk2EFm5HFGI1bHDGeJHfyC-DnccV61nSnF2XZFN55SFonHDCUHB5-0B_0XC8-wmZYVbU6JWqDsVFwrWw06t-msjzWX3LFUTMYfCflFr8YqeoNV_xtL4Y__BuEHyawNjfdzufdK_9iM-eYHMy2ZGs_?purpose=fullsize](https://images.openai.com/static-rsc-4/pLrV_VUXWY_LqgOjhAU7vHfmSdoxYwsS7KuOHTZ9kvy2R1IKGFMoHmXIrvNORPI1pomfZ5F67z1vewk83x5shdKnyxBqNjAAfChfWB6OtEhhf_0isjBgwV6r6XaU0Qu8WDz7EC_NWYbSdfuhxYs4WkDoT1WkhSgawtYZZlQ8o88?purpose=inline)
-
-4
+<img width="851" height="486" alt="image" src="https://github.com/user-attachments/assets/d704db9f-a3db-42ac-a44e-9c5b91ec0eee" />
 
 **Abbildung 5: Ausführung des Deployments**
 
@@ -300,13 +294,8 @@ Die Ausgabe zeigt, dass alle Aufgaben erfolgreich ausgeführt wurden (failed=0).
 
 ## **7.2 Erstellung der VM in Proxmox**
 
-![https://images.openai.com/static-rsc-4/OEftRRx82NV_hU-8jos4tnu8rpcCOkhmDRkf1_n7Db1R6ZbEVFakiWriKdXse7cgMeDP95-eFhuIbis5L9HklrnwkuzMRIqlzBUlMZeEmUuZcVHBUyQzug21Y2pBhLJ_yOhdjTf2mvGdFPw9sFoUC2df3sI80GebwZyKXaa56SG8QQGtWgPy8H0kOadLkdQR?purpose=fullsize](https://images.openai.com/static-rsc-4/2mSyRFh92fbqLAIL1BVi_yEQfkXdLsGJrGd7pPIeW_fEmfCF_2ld0Yi-sTI94mDloD33j8DwCOk49VGaXRG0T1Q3cZq2lXhEg_RjBJJoXHreuF-6533VNqtnZY9k1CMCeeFCQuAWmsKbtrdIQ0NIEdCVLXQeluPe_qBt1Bdg1r8?purpose=inline)
+<img width="1467" height="805" alt="image" src="https://github.com/user-attachments/assets/5031e47f-85d1-4e64-9808-c464bfea102a" />
 
-![https://images.openai.com/static-rsc-4/OEftRRx82NV_hU-8jos4tnu8rpcCOkhmDRkf1_n7Db1R6ZbEVFakiWriKdXse7cgMeDP95-eFhuIbis5L9HklrnwkuzMRIqlzBUlMZeEmUuZcVHBUyQzug21Y2pBhLJ_yOhdjTf2mvGdFPw9sFoUC2df3sI80GebwZyKXaa56SG8QQGtWgPy8H0kOadLkdQR?purpose=fullsize](https://images.openai.com/static-rsc-4/2mSyRFh92fbqLAIL1BVi_yEQfkXdLsGJrGd7pPIeW_fEmfCF_2ld0Yi-sTI94mDloD33j8DwCOk49VGaXRG0T1Q3cZq2lXhEg_RjBJJoXHreuF-6533VNqtnZY9k1CMCeeFCQuAWmsKbtrdIQ0NIEdCVLXQeluPe_qBt1Bdg1r8?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/OEftRRx82NV_hU-8jos4tnu8rpcCOkhmDRkf1_n7Db1R6ZbEVFakiWriKdXse7cgMeDP95-eFhuIbis5L9HklrnwkuzMRIqlzBUlMZeEmUuZcVHBUyQzug21Y2pBhLJ_yOhdjTf2mvGdFPw9sFoUC2df3sI80GebwZyKXaa56SG8QQGtWgPy8H0kOadLkdQR?purpose=fullsize](https://images.openai.com/static-rsc-4/2mSyRFh92fbqLAIL1BVi_yEQfkXdLsGJrGd7pPIeW_fEmfCF_2ld0Yi-sTI94mDloD33j8DwCOk49VGaXRG0T1Q3cZq2lXhEg_RjBJJoXHreuF-6533VNqtnZY9k1CMCeeFCQuAWmsKbtrdIQ0NIEdCVLXQeluPe_qBt1Bdg1r8?purpose=inline)
-
-4
 
 **Abbildung 6: VM in Proxmox**
 
@@ -316,13 +305,8 @@ Die VM wurde erfolgreich erstellt und gestartet.
 
 ## **7.3 SSH-Verbindung**
 
-![https://images.openai.com/static-rsc-4/bhrIJLllryeoNqFA6DOZnMxFeNveK3W3xZwEFeU4RlXyDNjJLoKI6wWsu32x2CgT4Pg4tiCrv26mHNwQ0Tora4o6cJ3Y8-AICIMxKryAO8rs0kBGxlyI0vRsi_WlrGBRt8xUHxgJ-beAzcQ61oqpujWiQTdouyAfP5W04ZCDmk_vmR-R4xp-UNz2KmFZs6px?purpose=fullsize](https://images.openai.com/static-rsc-4/hqie_ECkurqqqfYgLkRRfXkGUO-GutvBPyFpiSBw-Htkr6Is0hMVoMGpSRIgl1R1It3Lzf0XA-_p83noxrWID-7hUepRazALuJMjV_QD2aOyVRcv_wKBpQUAZJOATKy2tvN1Iwwv1BbXCWDe1-LQehHx-Uu5Ey763XK7psRz-Fc?purpose=inline)
+<img width="685" height="366" alt="image" src="https://github.com/user-attachments/assets/17eb7622-d7b0-422d-9a28-1012fbec6824" />
 
-![https://images.openai.com/static-rsc-4/8dPFhkyLeaU7Lxv402cjbAJTxpAajjERPlAnyoWhqh6K5AqAeASU8QNu_EHB5k-7S3fM7xng0573SiPyWlYobdnmZUBGV_S0Bn8DgFa5yAE2uzmO1VC84iQbs68A2EmDBxsfCq74RUXFecmDnQLBzBAJVETeHrA-vfY27bESqHRNizwPwuea_VIKS3AXdEGW?purpose=fullsize](https://images.openai.com/static-rsc-4/14khSLhclSBheC76yt8fHX1J97Ik8Af4qy_9m49YmKdj08o-KpGs1PHkKB8po8yXJUheC-L7uQzq4wb1HvqoEkUPgyWTPoMkg2mrMZ3LAyHSF9qSjKKoPOOgoxKzOjeLjS9selk0SbyxcrpMeStFM9K_j9ou1FmGklKgDub7lYo?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/GW2tZutGGTHPRCTBj7OL8yYhIVqwR3uU9wJNcgW_BBjXPIWX3FB0deDFUSPev0yWZCS0SpIpQsOFO6Npm6WJCbws4fxffESrUYfgsW9nGTSkrI6dMioYUkV7VW_IZnRrYQBPLj0wv1sAmjiRPTY8Qu-kYUSxeApsUa2BNxAwX452LDDINCM4Q1l3aRKn4qIS?purpose=fullsize](https://images.openai.com/static-rsc-4/yDg0FSS-qXwRV8LWlcQAtMUBJViZpWHTjTFLDmAQthO2Cbbz9V-_jXllQU_f8eXGgatOJwvjeNqUq11eSU4L1pGFOZdXVcGGu3Mh0kFNXdhMQS4O6Wg-fHcpVMNj4acBzavsjVNYAtlSTxEZvLCSLdixw9N7oCRoMzBbH2qOSzA?purpose=inline)
-
-4
 
 **Abbildung 7: SSH-Verbindung**
 
@@ -332,13 +316,8 @@ Die Verbindung bestätigt die korrekte Netzwerkkonfiguration.
 
 ## **7.4 Desktop-Umgebung**
 
-![https://images.openai.com/static-rsc-4/JB46O0bhOGjJSUC7pkPoNTHvSHiYB4WAxbEx0Uc6E3W57CBRjpIKnjsFL8a8JmNLsTgz8FMeEbce7zMOjJSh9olPPo-5agKky1i80BJqcg6j3gvvE-16Mg3asyuejeUXvPHSWNjThyaPkP_paEBS_tntsvLELAZE11cqw-hHgkeIHciVqnLktVvo_D8AyH9m?purpose=fullsize](https://images.openai.com/static-rsc-4/VUiRnaMQ3eWI8Hw4kPbQkeNd-DvrfjI3a63BpnEZv1jMEdbv6zA9eUfwjyhwsJT6W25q2_Ub_qQh_MVNJEYUb_kYIhqEnKyR0uLLwaClUyaQuB2hA33WuBHDaO_41iEt3_mpriPVzKiIt6zM57JSj_avI-mzErIg3zZlV3Jo-bs?purpose=inline)
+<img width="980" height="636" alt="image" src="https://github.com/user-attachments/assets/138b99ae-3902-446a-abb6-a84d760d4470" />
 
-![https://images.openai.com/static-rsc-4/MjqPdOJDS34yiVkDrKLwBXZXb_QBXucz33fKuQscsxj2Ql7zXQwRZnOK2tWRB1ROu8RagqEqbEcE7l54wYCbbztnnXVv1Qlv--6ubupFs6R00CShZA3_adHwQ9MBEnPkW4ywUWQCkif7niYtTaQKXtZol6EspFFwBxja0dh20ArL60qXOuYQkgAxpSUZM-SO?purpose=fullsize](https://images.openai.com/static-rsc-4/vhBpRHX-LS62iXaDd1dtf0kT2uWCAkGTXa4VPBlaOWZpugP0ljEha8TMFgVaTa0N87KahUte2R6kNT16cZ4Mc-ZuKvkMUl8ZB5_BxWFbM-s4RvtVPHp3AD7rh6IbVgfHrIb4GzWsWRE7KOGA9Pf5xN3DHXryQ0aHLSJm-6VzNls?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/Wd3thQeRXbOQbzNvcGCUiQe82i_KZL2QEj3j6fdrkk_EUPzL_HnzHzecmC3oxJPrNEzBnQO9jBys18OF72qoyaV5BNLIQx8hCx_tVU6c3sQqsjjacQJiyUWMRwb2rkrgVmHqgAdqMYKYDrKxmnkfwj3Tz9OLeh9rICWt2ZfG_Onu8VWREpfUYn77qXvfB7gE?purpose=fullsize](https://images.openai.com/static-rsc-4/If82UWoXYiRFg8LgoLehlGaIO11xvXtyVhUHbPeOX3KrCpxA2Je0-ev3IYDAxA97Gv8-5Y7Rq68ovSAUKwFYV7oCXcXF-dsZHPhMvS26-u4bX5epno0elZwXqTS0NNNrqnr6xQVF-YQYGY7K0OS2NRoHT1RsL9RPgbKI5pdsvdg?purpose=inline)
-
-4
 
 **Abbildung 8: XFCE Desktop**
 
@@ -348,29 +327,14 @@ Die VM ist vollständig nutzbar.
 
 ## **7.5 Remote Zugriff (XRDP)**
 
-![https://images.openai.com/static-rsc-4/F-nvFcXudnGTdUkIzd7wCDhG23cYrrlUC5dUjFd3cXIaChMQti3A0amfQwS3Q0Q5H7HuFn23KhZ1JRj04QoNgDLLWFWTRYTDd9Dn_RXhp9F3sG0ZeuTAMBPrRmbeUKKe17qS9YtRafpIvMKRKamPSGOO5sCJKKT-5Lt15N7v5DVGMVOyVUag27essr7et11B?purpose=fullsize](https://images.openai.com/static-rsc-4/RJWc2IIzV8OvSrtJUjoGD1W_omQAjOSClcfifhpnMsVxaFhj_LymBRVvvzsXWQqkiumChiEcvbB-SNKMF8gJ7WiIrOyclhxdfTVHDAFQD9nIpaQpQSTEsi-Bpyqp8pAltJvIDIPBIIo-Wt9j2Lkd0uaHMapwubBlsc0_QDtEOxE?purpose=inline)
+<img width="1153" height="713" alt="image" src="https://github.com/user-attachments/assets/e1ff0ad5-a927-4a20-b84a-466c2e9ea6e5" />
 
-![https://images.openai.com/static-rsc-4/8BHSeBpo0TGQlVxeTkJM7UazQQHxpZVcvPyr3FPKFHh0N8jR7SFMQmXCr_utTq6CyXjqsybyzAIHEZiCyBX_sAU-U5FEBzAraDYIcSHhFVWOuG4yK8-LOuLQ6hSXUIo11lJZUHYRUD6w81W4oHYIDPKgr-jWPlmVJOAb1AAXiyphZSxkKkHZN7Ftj_lQjGX_?purpose=fullsize](https://images.openai.com/static-rsc-4/Lh1jFTmP-Kn-IAGe7do3Tl3txknTFSt60XLjHzXCH8aQC5qrjnVt3l3VJi4sf-2V0KzBsSvfha787LXzMVkzVHp3RwgWDFdhvumcZuGGTlp8iYb611bRvs6mQ6h3L7QcEXUcRq5N431xQCNvXF77TJNKwKq1GEgkqxQCnXXe4no?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/qMoHD2eoEeO4HnL525l_8M6tfVrwzxwCCPudnhbPEnJjvscBKZsLMeRx3PJ_ofJkZdOE1DDtvnmTQoV9jrnIWeJSlpH98e_p3F0UZ2Zbn_N_A8L0fXyVk7DEG8PeRSbG5AHowU8wNGo2pGDs-8Zp1d_ZATsLRoPK6pxMLHQNsqXu2oWWHNCfOOCNA28igH2J?purpose=fullsize](https://images.openai.com/static-rsc-4/nHZbc6VmbxmysqVWLcaoDON9Uscx-FX1CRD5QE0hMQ8H3Da-3BomBmvq3yYN-DI_Y1-LQCsMim556W4-sq3OuW0dD69cMLvf2QY19Uwj2RAzrJwT_A4uGnOSZvomjw5boW1F-DuMqjap43ZbJbIst0sVO2rgbmxoO07qjHd2-Ls?purpose=inline)
-
-4
 
 **Abbildung 9: Remote Desktop Verbindung**
 
 Der Zugriff funktioniert über XRDP.
 
 ----------
-
-## **7.6 Skalierbarkeit**
-
-![https://images.openai.com/static-rsc-4/6wnqdpVc2S5QkhDclgFDi24IkzIhHtgq_sRLyuxAo6TDMfEU4dCntj-KO5roBnSy8FO-GHY1Bo30Ot9d8nBpVHzNE09tM-ZdGOAIYVD-XYzIJvHfY0abpM0ETmB6Zax6mS4aE8yjmzR_7uNMT9j4Z8lwZrleLzn8qNwvcZrYx6QCT0SekOtgaTr3RkguovYd?purpose=fullsize](https://images.openai.com/static-rsc-4/EB8Bm5EpZ0Vw1jb-Bk32ueK5geYb6CohelQMyzon2YD_e1REmlF7OnZBIquHlKEuSE_bPnvgc-_2jFnPLSZJ6ieq3BhEwCTLhGRgXyJzwDKyxdt5gzI3zZrWFhgEMCBlJCjBuH-ryFgPpjfLnkdC8t-nq2oKstfaIfun8DZfjEk?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/CNzw_0SZxrMIxdvRNLxAvIKsp2S_qMaWefaVgZdLLbAYdq1afd7g3JD2Y3-FYNoGuXO_1Ajkm0sulcwucKScU96rgIRyOBN_LObzL_OuG1LyufICw8UDtZ3uMekChXEhBfQviziFyskuzvNW494VvHFVkQR1PDJY2w-ogoHnPX6MCsRVgKCBDabjqStq9CFD?purpose=fullsize](https://images.openai.com/static-rsc-4/QHg1JKu_P2FosLnhpZHPxYcdZUQjJ6HTARFHm7uEaO0S_zYNokO5LwtoZ7Ue6avOdAyL7vzSvvOafmSXpQ7hpFFby9VvgAskwWYUvpvQ8eHNPNGGVQzB08j3FQPY9IRzAMKJfRakUF_DlcDqQGwuqRgS3LfkdLfvx41B87GFiN8?purpose=inline)
-
-![https://images.openai.com/static-rsc-4/8BHSeBpo0TGQlVxeTkJM7UazQQHxpZVcvPyr3FPKFHh0N8jR7SFMQmXCr_utTq6CyXjqsybyzAIHEZiCyBX_sAU-U5FEBzAraDYIcSHhFVWOuG4yK8-LOuLQ6hSXUIo11lJZUHYRUD6w81W4oHYIDPKgr-jWPlmVJOAb1AAXiyphZSxkKkHZN7Ftj_lQjGX_?purpose=fullsize](https://images.openai.com/static-rsc-4/Lh1jFTmP-Kn-IAGe7do3Tl3txknTFSt60XLjHzXCH8aQC5qrjnVt3l3VJi4sf-2V0KzBsSvfha787LXzMVkzVHp3RwgWDFdhvumcZuGGTlp8iYb611bRvs6mQ6h3L7QcEXUcRq5N431xQCNvXF77TJNKwKq1GEgkqxQCnXXe4no?purpose=inline)
-
-4
 
 **Abbildung 10: Mehrere VMs**
 
