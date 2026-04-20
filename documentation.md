@@ -170,23 +170,6 @@ Installation von Paketen
 Erstellung von Benutzern
 Einrichtung von XFCE
 Konfiguration von XRDP
-# **7. Erweiterte Systemkonfiguration
-
-Im Rahmen der Konfiguration wurden zusätzliche Anpassungen vorgenommen:
-
-## **7.1 Entfernung unnötiger Pakete
-
-Zur Optimierung des Systems wurden nicht benötigte Anwendungen entfernt.
-
-## **7.2 Installation zusätzlicher Software
-
-Wichtige Tools wie htop, net-tools und xrdp wurden installiert.
-
-## **7.3 Benutzerverwaltung
-
-Benutzer werden automatisiert erstellt und konfiguriert.
-
-# **6.7 Erweiterte Systemkonfiguration**
 
 ----------
 
