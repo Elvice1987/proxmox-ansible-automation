@@ -276,13 +276,94 @@ Die VM ist vollständig nutzbar.
 
 Der Zugriff funktioniert über XRDP.
 
-# **10. Fazit**
+# 10. Sicherheitsmaßnahmen
 
-Das Projekt zeigt, dass durch Automatisierung eine effiziente Infrastruktur aufgebaut werden kann.
+Im Projekt wurden zusätzliche Sicherheitsmaßnahmen umgesetzt, um den Zugriff auf die virtuellen Maschinen abzusichern.
 
-Der gesamte Prozess ist:
+## 10.1 SSH-Hardening
 
--   automatisiert
--   reproduzierbar
--   skalierbar
+Der SSH-Dienst wurde angepasst und abgesichert.
+
+Umgesetzt wurden:
+
+- SSH-Port von 22 auf 52220 geändert  
+- Root-Login deaktiviert  
+- Passwort-Anmeldung deaktiviert  
+- Anmeldung nur per SSH-Key erlaubt
+
+Verwendete SSH-Konfiguration:
+
+```text
+Port 52220
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+```
+
+Die Konfiguration wird automatisiert durch Ansible gesetzt.
+
+---
+
+## 10.2 Schutz mit Fail2ban
+
+Zum Schutz gegen Brute-Force-Angriffe wurde Fail2ban installiert und konfiguriert.
+
+Verwendete Einstellungen:
+
+```text
+[sshd]
+enabled = true
+port = 52220
+maxretry = 5
+findtime = 10m
+bantime = 1h
+```
+
+Nach fünf fehlerhaften Anmeldungen wird eine IP automatisch gesperrt.
+
+---
+
+## 10.3 Automatische Verteilung von SSH-Schlüsseln
+
+Über Cloud-Init werden mehrere SSH-Schlüssel automatisch auf neue VMs übertragen.
+
+Verwendet werden:
+
+- SSH-Key des Ansible-Control-Nodes  
+- SSH-Key des Client-Rechners
+
+Dadurch ist kein manuelles Nachpflegen der Schlüssel notwendig.
+
+---
+
+## 10.4 Überprüfung der Sicherheitskonfiguration
+
+Ein Portscan zeigte folgendes Ergebnis:
+
+```text
+22/tcp closed
+52220/tcp open
+3389/tcp open
+```
+
+Damit wurde geprüft:
+
+- Port 22 ist deaktiviert  
+- Port 52220 ist aktiv  
+- XRDP auf Port 3389 bleibt erreichbar
+
+---
+# 11. Fazit
+
+Das Projekt zeigt, dass virtuelle Maschinen mit Proxmox und Ansible automatisiert bereitgestellt werden können.
+
+Die Erstellung, Konfiguration und Benutzerverwaltung laufen automatisiert ab.
+
+Zusätzlich wurden Sicherheitsmaßnahmen umgesetzt:
+
+- SSH-Hardening  
+- automatische SSH-Key-Verteilung  
+- Schutz mit Fail2ban
+
+Dadurch entstand eine automatisierte und abgesicherte Umgebung.
 
