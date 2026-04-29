@@ -30,6 +30,18 @@ desktop_users:
     shell: "/bin/bash"
     password: "$6$ciySGAovnpGWQEBR$GFRDjHvqRGYl0o.xTKGJcTLW76z.jbHZEaRHCjCy7Bp1pawEY54VLcBauo5RpEaWzmTPUuHgt0vLDoyRp9D1E0"
 
+  - name: "user2"
+    comment: "Benutzer Zwei"
+    groups:
+      - audio
+      - video
+      - plugdev
+      - "{{ xrdp_allowed_group }}"
+    shell: "/bin/bash"
+    password: "$6$ciySGAovnpGWQEBR$GFRDjHvqRGYl0o.xTKGJcTLW76z.jbHZEaRHCjCy7Bp1pawEY54VLcBauo5RpEaWzmTPUuHgt0vLDoyRp9D1>"
+
+
+
 # 📦 Basis-Pakete
 base_packages:
   - sudo
@@ -68,4 +80,4 @@ app_packages:
   - xorgxrdp
 
 install_google_chrome: true
-install_onlyoffice: true
+install_onlyoffice: false

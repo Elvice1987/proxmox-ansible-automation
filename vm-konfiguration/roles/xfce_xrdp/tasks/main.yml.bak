@@ -60,6 +60,25 @@
   community.general.timezone:
     name: "{{ timezone }}"
 
+- name: Locale aktivieren
+  ansible.builtin.lineinfile:
+    path: /etc/locale.gen
+    regexp: '^#?\\s*{{ locale | regex_escape() }}\\s+UTF-8'
+    line: '{{ locale }} UTF-8'
+
+- name: Locale generieren
+  ansible.builtin.command: locale-gen
+  changed_when: true
+
+- name: Standard-Locale setzen
+  ansible.builtin.copy:
+    dest: /etc/default/locale
+    mode: "0644"
+    content: |
+      LANG={{ locale }}
+      LANGUAGE={{ locale.split('.')[0] }}
+      LC_ALL={{ locale }}
+
 - name: XRDP-Gruppe erstellen
   ansible.builtin.group:
     name: "{{ xrdp_allowed_group }}"
@@ -68,6 +87,8 @@
 - name: Benutzer anlegen
   ansible.builtin.user:
     name: "{{ item.name }}"
+    comment: "{{ item.comment | default(item.name) }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
     groups: "{{ item.groups | join(',') }}"
     append: true
     create_home: true
@@ -85,6 +106,15 @@
       exec startxfce4
   loop: "{{ desktop_users }}"
 
+- name: Desktop-Ordner erstellen
+  ansible.builtin.file:
+    path: "/home/{{ item.name }}/Desktop"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: "0755"
+  loop: "{{ desktop_users }}"
+
 - name: XRDP-Port setzen
   ansible.builtin.lineinfile:
     path: /etc/xrdp/xrdp.ini
@@ -100,32 +130,3 @@
   loop:
     - xrdp
     - xrdp-sesman
-
-- name: SSH-Port auf 52220 setzen
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^#?Port'
-    line: 'Port 52220'
-
-- name: Root-Login über SSH deaktivieren
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^#?PermitRootLogin'
-    line: 'PermitRootLogin no'
-
-- name: SSH-Key-Authentifizierung aktivieren
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^#?PubkeyAuthentication'
-    line: 'PubkeyAuthentication yes'
-
-- name: Passwort-Login über SSH deaktivieren
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^#?PasswordAuthentication'
-    line: 'PasswordAuthentication no'
-
-- name: SSH-Dienst neu starten
-  ansible.builtin.service:
-    name: ssh
-    state: restarted
