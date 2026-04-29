@@ -9,7 +9,7 @@ PROXMOX_USER="root@pam"
 PROXMOX_PASSWORD="********"
 
 # ----- IP Bereich -----
-START_IP=168
+START_IP=100
 END_IP=199
 
 # ----- VMID automatisch bestimmen -----
