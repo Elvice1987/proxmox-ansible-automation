@@ -1,4 +1,4 @@
-# 📄 **Automatisierung von virtuellen Maschinen mit Proxmox und Ansible**
+# **Automatisierung von virtuellen Maschinen mit Proxmox und Ansible**
 
 ----------
 
