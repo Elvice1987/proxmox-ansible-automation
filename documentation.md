@@ -4,7 +4,7 @@
 
 # **1. Einleitung**
 
-Im Rahmen dieses Projekts wurde eine Lösung zur automatisierten Erstellung und Konfiguration von virtuellen Maschinen (VMs) entwickelt.
+Im Rahmen diese Aufgabe wurde eine Lösung zur automatisierten Erstellung und Konfiguration von virtuellen Maschinen (VMs) entwickelt.
 
 Die Umsetzung basiert auf den Technologien **Proxmox**, **Ansible**, **Cloud-Init** sowie **Shell-Skripten**. Ziel ist es, den gesamten Prozess – von der Erstellung bis zur fertigen Desktop-Umgebung – vollständig zu automatisieren.
 
@@ -16,9 +16,9 @@ Dies ermöglicht:
 
 ----------
 
-# **2. Projektziel**
+# **2. Aufgabeziel**
 
-Die wichtigsten Ziele des Projekts sind:
+Die wichtigsten Ziele die Augabe sind:
 
 -   Automatisierte Erstellung von virtuellen Maschinen
 -   Automatische Konfiguration von Desktop-Systemen (XFCE, XRDP)
@@ -278,7 +278,7 @@ Der Zugriff funktioniert über XRDP.
 
 # 10. Sicherheitsmaßnahmen
 
-Im Projekt wurden zusätzliche Sicherheitsmaßnahmen umgesetzt, um den Zugriff auf die virtuellen Maschinen abzusichern.
+In der Aufgabe wurden zusätzliche Sicherheitsmaßnahmen umgesetzt, um den Zugriff auf die virtuellen Maschinen abzusichern.
 
 ## 10.1 SSH-Hardening
 
@@ -355,7 +355,7 @@ Damit wurde geprüft:
 ---
 # 11. Fazit
 
-Das Projekt zeigt, dass virtuelle Maschinen mit Proxmox und Ansible automatisiert bereitgestellt werden können.
+Die Aufgabe zeigt, dass virtuelle Maschinen mit Proxmox und Ansible automatisiert bereitgestellt werden können.
 
 Die Erstellung, Konfiguration und Benutzerverwaltung laufen automatisiert ab.
 
