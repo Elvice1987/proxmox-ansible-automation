@@ -411,9 +411,11 @@ Nach der Konfiguration der Zielmaschine werden zusätzliche Tasks ausgeführt:
 
 Verwendete Variablen:
 
+```yaml
 install_checkmk_agent: true
 checkmk_server_url: "http://192.168.30.181/monitoring"
 checkmk_automation_user: "ansible"
+```
 
 # 12. fazit
 
