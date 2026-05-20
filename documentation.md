@@ -376,6 +376,46 @@ Damit wurde geprüft:
 - XRDP auf Port 3389 bleibt erreichbar
 
 ---
+# 11. Monitoring-Integration mit Checkmk
+
+Zur Erweiterung der automatisierten Infrastruktur wurde zusätzlich eine automatische Monitoring-Integration mit Checkmk implementiert.
+
+Ziel dieser Erweiterung war es, neu bereitgestellte virtuelle Maschinen nicht nur automatisch zu konfigurieren, sondern auch unmittelbar in das Monitoring-System einzubinden.
+
+Dadurch entfällt die manuelle Registrierung neuer Hosts im Checkmk-Webinterface.
+
+## 11.1 Ziel der Integration
+
+Die Monitoring-Erweiterung verfolgt folgende Ziele:
+
+- automatische Installation des Checkmk-Agenten auf neuen VMs
+- automatische Registrierung neuer Hosts im Checkmk-Server
+- automatische Service-Erkennung (Service Discovery)
+- automatische Aktivierung der Konfigurationsänderungen
+- sofortige Sichtbarkeit neuer Systeme im Monitoring
+
+---
+
+## 11.2 Technische Umsetzung
+
+Die Integration wurde innerhalb der bestehenden Ansible-Rolle `xfce_xrdp` umgesetzt.
+
+Nach der Konfiguration der Zielmaschine werden zusätzliche Tasks ausgeführt:
+
+- Download des Checkmk-Agenten
+- Installation des Agenten
+- Aktivierung des Agent-Sockets auf Port 6556
+- Erstellung des Hosts über die Checkmk REST API
+- automatische Service Discovery
+- Aktivierung der Konfigurationsänderungen
+
+Verwendete Variablen:
+
+```yaml
+install_checkmk_agent: true
+checkmk_server_url: "http://192.168.30.181/monitoring"
+checkmk_automation_user: "ansible"
+
 # 11. Fazit
 
 Die Aufgabe zeigt, dass virtuelle Maschinen mit Proxmox und Ansible automatisiert bereitgestellt werden können.
