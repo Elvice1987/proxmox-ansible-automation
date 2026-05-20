@@ -4,7 +4,7 @@
 
 # **1. Einleitung**
 
-Im Rahmen diese Aufgabe wurde eine Lösung zur automatisierten Erstellung und Konfiguration von virtuellen Maschinen (VMs) entwickelt.
+Im Rahmen dieser Aufgabe wurde eine Lösung zur automatisierten Erstellung und Konfiguration von virtuellen Maschinen (VMs) entwickelt.
 
 Die Umsetzung basiert auf den Technologien **Proxmox**, **Ansible**, **Cloud-Init** sowie **Shell-Skripten**. Ziel ist es, den gesamten Prozess – von der Erstellung bis zur fertigen Desktop-Umgebung – vollständig zu automatisieren.
 
@@ -18,7 +18,7 @@ Dies ermöglicht:
 
 # **2. Aufgabeziel**
 
-Die wichtigsten Ziele die Augabe sind:
+Die wichtigsten Ziele der Augabe sind:
 
 -   Automatisierte Erstellung von virtuellen Maschinen
 -   Automatische Konfiguration von Desktop-Systemen (XFCE, XRDP)
@@ -99,10 +99,18 @@ sequenceDiagram
 # **5. Automatisierungslogik**
 ```mermaid
 flowchart TD
-    A([Start Script]) --> B[Freie VMID berechnen]
-    B --> C[VM Name generieren]
-    C --> D[Freie IP-Adresse finden]
-    D --> E([VM erstellen])
+    A([Start])
+    B[Freie VMID ermitteln]
+    C[VM-Namen generieren]
+    D[Freie IP-Adresse bestimmen]
+    E[Inventory aktualisieren]
+    F[VM aus Template klonen]
+    G[Cloud-Init anwenden]
+    H[Auf SSH warten]
+    I[site.yml ausführen]
+    J([Deployment abgeschlossen])
+
+    A --> B --> C --> D --> E --> F --> G --> H --> I --> J
 ```
 **Abbildung 3: Automatisierungslogik**
 
@@ -206,7 +214,7 @@ Konfiguration von XRDP
 
 -   net-tools
 -   htop
--   google-chrome
+-   google-chrome-stable
 -   onlyoffice
 -   xrdp
 
@@ -355,9 +363,10 @@ Dadurch ist kein manuelles Nachpflegen der Schlüssel notwendig.
 Ein Portscan zeigte folgendes Ergebnis:
 
 ```text
-22/tcp closed
-52220/tcp open
-3389/tcp open
+PORT      STATE  SERVICE
+22/tcp    closed ssh
+3389/tcp  open   ms-wbt-server
+52220/tcp open   unknown
 ```
 
 Damit wurde geprüft:
