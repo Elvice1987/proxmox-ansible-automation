@@ -322,82 +322,6 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 ```
 
-Die Authentifizierung erfolgt über einen dedizierten Automation User in Checkmk.
-
----
-
-## 11.3 Verwendete REST API-Endpunkte
-
-Für die automatische Monitoring-Integration werden folgende API-Endpunkte genutzt:
-
-Host-Erstellung:
-
-```text
-/check_mk/api/1.0/domain-types/host_config/collections/all
-```
-
-Service Discovery:
-
-```text
-/check_mk/api/1.0/domain-types/service_discovery_run/actions/start/invoke
-```
-
-Aktivierung der Änderungen:
-
-```text
-/check_mk/api/1.0/domain-types/activation_run/actions/activate-changes/invoke
-```
-
----
-
-## 11.4 Erweiterter Systemablauf
-
-```mermaid
-flowchart LR
-    C["Administrator"]
-    S["auto-deploy.sh"]
-    A["Ansible Control Node"]
-    P["Proxmox Host"]
-    VM["Neue VM"]
-    CFG["Systemkonfiguration"]
-    CMK["Checkmk Server"]
-
-    C --> S
-    S --> A
-    A --> P
-    P --> VM
-    VM --> CFG
-    CFG --> A
-    A -->|Checkmk Agent Installation| VM
-    A -->|REST API Host-Erstellung| CMK
-    A -->|Service Discovery| CMK
-    A -->|Activate Changes| CMK
-```
-
-**Abbildung 10: Automatisierte Monitoring-Integration**
-
----
-
-## 11.5 Ergebnis
-
-Nach Abschluss des Deployments erscheint eine neue virtuelle Maschine automatisch im Checkmk-Monitoring.
-
-Automatisch erkannte Dienste:
-
-- CPU-Auslastung
-- Arbeitsspeicher
-- Dateisysteme
-- Netzwerkinterfaces
-- TCP-Verbindungen
-- Systemdienste
-- Uptime
-- Kernel Performance
-
-Dadurch wurde die Infrastruktur um eine vollständig automatisierte Monitoring-Anbindung erweitert.
-
-Die Konfiguration wird automatisiert durch Ansible gesetzt.
-
----
 
 ## 10.2 Schutz mit Fail2ban
 
@@ -490,7 +414,83 @@ checkmk_server_url: "http://192.168.30.181/monitoring"
 checkmk_automation_user: "ansible"
 ```
 
-# 12. fazit
+Die Authentifizierung erfolgt über einen dedizierten Automation User in Checkmk.
+
+---
+
+## 11.3 Verwendete REST API-Endpunkte
+
+Für die automatische Monitoring-Integration werden folgende API-Endpunkte genutzt:
+
+Host-Erstellung:
+
+```text
+/check_mk/api/1.0/domain-types/host_config/collections/all
+```
+
+Service Discovery:
+
+```text
+/check_mk/api/1.0/domain-types/service_discovery_run/actions/start/invoke
+```
+
+Aktivierung der Änderungen:
+
+```text
+/check_mk/api/1.0/domain-types/activation_run/actions/activate-changes/invoke
+```
+
+---
+
+## 11.4 Erweiterter Systemablauf
+
+```mermaid
+flowchart LR
+    C["Administrator"]
+    S["auto-deploy.sh"]
+    A["Ansible Control Node"]
+    P["Proxmox Host"]
+    VM["Neue VM"]
+    CFG["Systemkonfiguration"]
+    CMK["Checkmk Server"]
+
+    C --> S
+    S --> A
+    A --> P
+    P --> VM
+    VM --> CFG
+    CFG --> A
+    A -->|Checkmk Agent Installation| VM
+    A -->|REST API Host-Erstellung| CMK
+    A -->|Service Discovery| CMK
+    A -->|Activate Changes| CMK
+```
+
+**Abbildung 10: Automatisierte Monitoring-Integration**
+
+---
+
+## 11.5 Ergebnis
+
+Nach Abschluss des Deployments erscheint eine neue virtuelle Maschine automatisch im Checkmk-Monitoring.
+
+Automatisch erkannte Dienste:
+
+- CPU-Auslastung
+- Arbeitsspeicher
+- Dateisysteme
+- Netzwerkinterfaces
+- TCP-Verbindungen
+- Systemdienste
+- Uptime
+- Kernel Performance
+
+Dadurch wurde die Infrastruktur um eine vollständig automatisierte Monitoring-Anbindung erweitert.
+
+Die Konfiguration wird automatisiert durch Ansible gesetzt.
+
+---
+
 
 # 12. Fazit
 
