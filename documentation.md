@@ -68,15 +68,29 @@ sequenceDiagram
     participant VM
 
     User->>Script: ./auto-deploy.sh
-    Script->>Ansible: create-vm.yml
-    Ansible->>Proxmox: API-Aufruf
-    Proxmox->>VM: VM erstellen
+    Script->>Ansible: Start create-vm.yml
+    Ansible->>Proxmox: API-Aufruf zur VM-Erstellung
+    Proxmox->>VM: VM aus Template klonen
     Proxmox->>VM: VM starten
 
-    VM->>VM: Cloud-Init Konfiguration
+    VM->>VM: Cloud-Init Initialisierung
+    VM->>VM: Netzwerk konfigurieren
+    VM->>VM: SSH-Key setzen
 
-    Ansible->>VM: Warten auf SSH
+    Ansible->>VM: Warten auf SSH-Verfügbarkeit
     Ansible->>VM: site.yml ausführen
+
+    Ansible->>VM: Debian-Paketquellen konfigurieren
+    Ansible->>VM: Basis-Pakete installieren
+    Ansible->>VM: XFCE & XRDP konfigurieren
+    Ansible->>VM: Benutzer anlegen
+    Ansible->>VM: Anwendungen installieren
+    Ansible->>VM: SSH-Hardening anwenden
+    Ansible->>VM: Fail2ban konfigurieren
+    Ansible->>VM: SSH-Dienst neu starten
+
+    User->>VM: SSH-Zugriff über Port 52220
+    User->>VM: RDP-Zugriff über Port 3389
 ```
 **Abbildung 2: Ablauf des Deployments**
 
