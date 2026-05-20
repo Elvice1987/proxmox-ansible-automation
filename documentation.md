@@ -411,12 +411,11 @@ Nach der Konfiguration der Zielmaschine werden zusätzliche Tasks ausgeführt:
 
 Verwendete Variablen:
 
-```yaml
 install_checkmk_agent: true
 checkmk_server_url: "http://192.168.30.181/monitoring"
 checkmk_automation_user: "ansible"
 
-# 11. Fazit
+# 12. fazit
 
 Die Aufgabe zeigt, dass virtuelle Maschinen mit Proxmox und Ansible automatisiert bereitgestellt werden können.
 
